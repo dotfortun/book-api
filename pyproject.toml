@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "book-api"
+version = "0.1.0"
+description = ""
+authors = ["Shane Bell <being.for.itself@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = {extras = ["standard"], version = "^0.115.6"}
+sqlmodel = "^0.0.22"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# [tool.poetry.scripts]
+# dev = "fastapi dev ./book_api/main.py"
