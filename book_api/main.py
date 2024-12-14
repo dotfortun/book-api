@@ -51,7 +51,7 @@ async def read_book(
 
 
 @app.post("/library/add", response_model=Book)
-async def write_book(
+async def create_book(
     request: Request,
     book: BookCreate,
     session: Session = Depends(get_session),
