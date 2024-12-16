@@ -41,8 +41,10 @@ watchfiles = "==1.0.3"
 websockets = "==14.1"
 fastapi = "*"
 sqlmodel = "*"
+sqlalchemy-libsql = "*"
 
 [dev-packages]
+python-dotenv = "*"
 
 [requires]
 python_version = "3.12"

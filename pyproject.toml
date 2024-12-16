@@ -9,6 +9,8 @@ readme = "README.md"
 python = "^3.10"
 fastapi = {extras = ["standard"], version = "^0.115.6"}
 sqlmodel = "^0.0.22"
+libsql-experimental = "^0.0.41"
+libsql-client = "^0.3.1"
 
 
 [tool.poetry.group.dev.dependencies]

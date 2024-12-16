@@ -1,12 +1,21 @@
+import os
 from typing import Annotated, Optional
 
 from fastapi import Depends
 from pydantic import BaseModel
 from sqlmodel import Field, Session, SQLModel, create_engine
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
+TURSO_DATABASE_URL = os.getenv('TURSO_DATABASE_URL')
+TURSO_AUTH_TOKEN = os.getenv('TURSO_AUTH_TOKEN')
+
 
 sqlite_file_name = "database.db"
-sqlite_url = f"sqlite:///{sqlite_file_name}"
+sqlite_url = f"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true"
+
 
 connect_args = {"check_same_thread": False}
 engine = create_engine(sqlite_url, connect_args=connect_args)
