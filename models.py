@@ -16,8 +16,6 @@ load_dotenv()
 
 NEON_CONN_STR = os.getenv("NEON_CONN_STR")
 
-print(NEON_CONN_STR)
-
 engine = create_engine(NEON_CONN_STR, echo=True)
 
 
