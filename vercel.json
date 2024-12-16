@@ -1,7 +1,7 @@
 {
     "builds": [
       {
-        "src": "main.py",
+        "src": "./book_api/main.py",
         "use": "@vercel/python"
       }
     ],
