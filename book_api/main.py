@@ -17,7 +17,8 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="LibraryAPI",
-    lifespan=lifespan
+    lifespan=lifespan,
+    docs_url="/"
 )
 
 
