@@ -4,30 +4,21 @@ from typing import Annotated, Optional
 from fastapi import Depends
 from pydantic import BaseModel
 from sqlmodel import Field, Session, SQLModel, create_engine
+import asyncio
+from sqlalchemy import text
+from dotenv import load_dotenv
+from urllib.parse import urlparse
+from sqlalchemy.ext.asyncio import create_async_engine
 
 from dotenv import load_dotenv
 
 load_dotenv()
 
-TURSO_DATABASE_URL = os.environ.get('TURSO_DATABASE_URL')
-TURSO_AUTH_TOKEN = os.environ.get('TURSO_AUTH_TOKEN')
+NEON_CONN_STR = os.getenv("NEON_CONN_STR")
 
+print(NEON_CONN_STR)
 
-sqlite_file_name = "database.db"
-sqlite_url = f"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true"
-
-TURSO_DB_URL = os.environ.get("TURSO_DATABASE_URL")
-TURSO_DB_AUTH_TOKEN = os.environ.get("TURSO_AUTH_TOKEN")
-
-dbUrl = f"sqlite+{TURSO_DB_URL}/?authToken={TURSO_DB_AUTH_TOKEN}&secure=true"
-
-print(dbUrl)
-
-engine = create_engine(
-    dbUrl,
-    connect_args={'check_same_thread': False},
-    echo=True
-)
+engine = create_engine(NEON_CONN_STR, echo=True)
 
 
 def get_session():
