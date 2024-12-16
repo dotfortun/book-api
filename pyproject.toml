@@ -11,6 +11,9 @@ fastapi = {extras = ["standard"], version = "^0.115.6"}
 sqlmodel = "^0.0.22"
 
 
+[tool.poetry.group.dev.dependencies]
+pipenv-poetry-migrate = "^0.5.12"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
