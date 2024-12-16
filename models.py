@@ -16,9 +16,15 @@ TURSO_AUTH_TOKEN = os.getenv('TURSO_AUTH_TOKEN')
 sqlite_file_name = "database.db"
 sqlite_url = f"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true"
 
+TURSO_DATABASE_URL = os.environ.get("TURSO_DATABASE_URL")
+TURSO_AUTH_TOKEN = os.environ.get("TURSO_AUTH_TOKEN")
 
-connect_args = {"check_same_thread": False}
-engine = create_engine(sqlite_url, connect_args=connect_args)
+dbUrl = f"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true"
+
+engine = create_engine(
+    dbUrl, connect_args={'check_same_thread': False},
+    echo=True
+)
 
 
 def get_session():
