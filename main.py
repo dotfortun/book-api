@@ -1,3 +1,5 @@
+import dialect
+
 from contextlib import asynccontextmanager
 from typing import Annotated
 from fastapi import Depends, FastAPI, HTTPException, Path, Request, Response, status

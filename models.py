@@ -9,8 +9,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-TURSO_DATABASE_URL = os.getenv('TURSO_DATABASE_URL')
-TURSO_AUTH_TOKEN = os.getenv('TURSO_AUTH_TOKEN')
+TURSO_DATABASE_URL = os.environ.get('TURSO_DATABASE_URL')
+TURSO_AUTH_TOKEN = os.environ.get('TURSO_AUTH_TOKEN')
 
 
 sqlite_file_name = "database.db"
@@ -22,7 +22,8 @@ TURSO_AUTH_TOKEN = os.environ.get("TURSO_AUTH_TOKEN")
 dbUrl = f"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true"
 
 engine = create_engine(
-    dbUrl, connect_args={'check_same_thread': False},
+    dbUrl,
+    connect_args={'check_same_thread': False},
     echo=True
 )
 
