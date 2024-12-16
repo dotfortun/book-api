@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import Depends, FastAPI, HTTPException, Path, Request, Response, status
 from sqlmodel import SQLModel, Session, select
 
-from book_api.models import (
+from models import (
     Book, BookCreate, Books, BookUpdate,
     engine, SessionDep, get_session
 )
