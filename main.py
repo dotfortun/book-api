@@ -5,6 +5,7 @@ from typing import Annotated
 from fastapi import Depends, FastAPI, HTTPException, Path, Request, Response, status
 from sqlmodel import SQLModel, Session, select
 from scalar_fastapi import get_scalar_api_reference
+from fastapi.middleware.cors import CORSMiddleware
 
 from models import (
     Book, BookCreate, Books, BookUpdate,
@@ -22,6 +23,14 @@ app = FastAPI(
     title="LibraryAPI",
     lifespan=lifespan,
     docs_url="/"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.get("/scalar", include_in_schema=False)
