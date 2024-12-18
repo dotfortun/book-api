@@ -1,7 +1,11 @@
+# import dialect
+
 from contextlib import asynccontextmanager
 from typing import Annotated
 from fastapi import Depends, FastAPI, HTTPException, Path, Request, Response, status
 from sqlmodel import SQLModel, Session, select
+from scalar_fastapi import get_scalar_api_reference
+from fastapi.middleware.cors import CORSMiddleware
 
 from models import (
     Book, BookCreate, Books, BookUpdate,
@@ -21,13 +25,28 @@ app = FastAPI(
     docs_url="/"
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+@app.get("/scalar", include_in_schema=False)
+async def scalar_html():
+    return get_scalar_api_reference(
+        openapi_url=app.openapi_url,
+        title=app.title,
+    )
+
 
 @app.get("/library", response_model=Books)
 async def read_library(
     request: Request,
     session: Session = Depends(get_session)
 ):
-    books = session.exec(select(Book)).all()
+    books = session.exec(select(Book).order_by(Book.id)).all()
 
     return {
         "books": books,

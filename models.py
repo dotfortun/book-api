@@ -1,15 +1,22 @@
+import os
 from typing import Annotated, Optional
 
 from fastapi import Depends
 from pydantic import BaseModel
 from sqlmodel import Field, Session, SQLModel, create_engine
+import asyncio
+from sqlalchemy import text
+from dotenv import load_dotenv
+from urllib.parse import urlparse
+from sqlalchemy.ext.asyncio import create_async_engine
 
+from dotenv import load_dotenv
 
-sqlite_file_name = "database.db"
-sqlite_url = f"sqlite:///{sqlite_file_name}"
+load_dotenv()
 
-connect_args = {"check_same_thread": False}
-engine = create_engine(sqlite_url, connect_args=connect_args)
+NEON_CONN_STR = os.getenv("DATABASE_URL")
+
+engine = create_engine(NEON_CONN_STR, echo=True)
 
 
 def get_session():

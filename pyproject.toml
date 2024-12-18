@@ -6,10 +6,16 @@ authors = ["Shane Bell <being.for.itself@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
-fastapi = {extras = ["standard"], version = "^0.115.6"}
+python = "^3.12"
+fastapi = { extras = ["standard"], version = "^0.115.6" }
 sqlmodel = "^0.0.22"
-
+exceptiongroup = "^1.2.2"
+async-timeout = "^5.0.1"
+sqlalchemy-libsql = "^0.1.0"
+pg8000 = "^1.31.2"
+psycopg2 = "^2.9.10"
+psycopg2-binary = "^2.9.10"
+scalar-fastapi = "^1.0.3"
 
 [tool.poetry.group.dev.dependencies]
 pipenv-poetry-migrate = "^0.5.12"
