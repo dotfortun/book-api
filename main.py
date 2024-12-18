@@ -46,7 +46,7 @@ async def read_library(
     request: Request,
     session: Session = Depends(get_session)
 ):
-    books = session.exec(select(Book)).all()
+    books = session.exec(select(Book).order_by(Book.id)).all()
 
     return {
         "books": books,
