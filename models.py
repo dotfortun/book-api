@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-NEON_CONN_STR = os.getenv("NEON_CONN_STR")
+NEON_CONN_STR = os.getenv("DATABASE_URL")
 
 engine = create_engine(NEON_CONN_STR, echo=True)
 
