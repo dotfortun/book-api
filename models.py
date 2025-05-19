@@ -16,7 +16,10 @@ load_dotenv()
 
 NEON_CONN_STR = os.getenv("DATABASE_URL")
 
-engine = create_engine(NEON_CONN_STR, echo=True)
+if NEON_CONN_STR:
+    engine = create_engine(NEON_CONN_STR, echo=True)
+else:
+    engine = create_engine("sqlite3://database.db", echo=True)
 
 
 def get_session():
@@ -68,3 +71,21 @@ class BookUpdate(BookBase):
 class Books(BaseModel):
     books: list[Book]
     count: int
+
+
+class InventoryBase(BaseModel):
+    book: Book
+    serial: str
+
+
+class InventoryCreate(InventoryBase):
+    book: Book = None
+
+
+class InventoryDelete(InventoryBase):
+    serial: str
+
+
+class User(BaseModel):
+    email: str
+    password: str
