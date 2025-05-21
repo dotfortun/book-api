@@ -1,5 +1,7 @@
+from datetime import datetime, timezone
 import os
 from typing import Annotated, Optional
+from uuid import uuid4
 
 from fastapi import Depends
 from pydantic import BaseModel
@@ -19,7 +21,7 @@ NEON_CONN_STR = os.getenv("DATABASE_URL")
 if NEON_CONN_STR:
     engine = create_engine(NEON_CONN_STR, echo=True)
 else:
-    engine = create_engine("sqlite3://database.db", echo=True)
+    engine = create_engine("sqlite:///database.db", echo=True)
 
 
 def get_session():
@@ -73,19 +75,33 @@ class Books(BaseModel):
     count: int
 
 
-class InventoryBase(BaseModel):
-    book: Book
+class InventoryBase(SQLModel):
+    book: Book = Field()
     serial: str
 
 
-class InventoryCreate(InventoryBase):
-    book: Book = None
+class InventoryBook(InventoryBase, table=True):
+    id: int | None = Field(default=None, primary_key=True)
 
 
-class InventoryDelete(InventoryBase):
-    serial: str
+# class InventoryCreate(InventoryBase):
+#     book_id: int
+#     serial: str = Field(default=lambda _: uuid4().bytes.decode("utf-8"))
 
 
-class User(BaseModel):
-    email: str
-    password: str
+# class InventoryDelete(InventoryBase):
+#     serial: str
+
+
+# class User(SQLModel):
+#     email: str
+#     password: str
+
+
+# class UserInventoryBase(SQLModel):
+#     checked_out: datetime = Field(default=datetime.now(
+#         timezone.utc),
+#         nullable=False
+#     )
+#     returned: Optional[datetime] = None
+#     inventory: list[InventoryBook]
