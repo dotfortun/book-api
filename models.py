@@ -42,6 +42,7 @@ class BookBase(SQLModel):
     isbn10: Optional[str] = None
     is_awesome: bool = True
     have_read: bool = False
+    stock: Optional[int] = None
 
 
 class Book(BookBase, table=True):
@@ -57,6 +58,7 @@ class BookCreate(BookBase):
     isbn13: Optional[str] = None
     isbn10: Optional[str] = None
     is_awesome: bool = True
+    stock: Optional[int] = None
 
 
 class BookUpdate(BookBase):
@@ -68,6 +70,7 @@ class BookUpdate(BookBase):
     isbn13: Optional[str] = None
     isbn10: Optional[str] = None
     is_awesome: Optional[bool] = None  # type: ignore
+    stock: Optional[int] = None
 
 
 class Books(BaseModel):
@@ -75,33 +78,7 @@ class Books(BaseModel):
     count: int
 
 
-class InventoryBase(SQLModel):
-    book: Book = Field()
-    serial: str
-
-
-class InventoryBook(InventoryBase, table=True):
-    id: int | None = Field(default=None, primary_key=True)
-
-
-# class InventoryCreate(InventoryBase):
-#     book_id: int
-#     serial: str = Field(default=lambda _: uuid4().bytes.decode("utf-8"))
-
-
-# class InventoryDelete(InventoryBase):
-#     serial: str
-
-
 # class User(SQLModel):
 #     email: str
 #     password: str
 
-
-# class UserInventoryBase(SQLModel):
-#     checked_out: datetime = Field(default=datetime.now(
-#         timezone.utc),
-#         nullable=False
-#     )
-#     returned: Optional[datetime] = None
-#     inventory: list[InventoryBook]

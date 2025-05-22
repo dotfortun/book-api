@@ -16,6 +16,8 @@ pg8000 = "^1.31.2"
 psycopg2 = "^2.9.10"
 psycopg2-binary = "^2.9.10"
 scalar-fastapi = "^1.0.3"
+pyjwt = "^2.10.1"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
 
 [tool.poetry.group.dev.dependencies]
 pipenv-poetry-migrate = "^0.5.12"

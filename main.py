@@ -12,6 +12,8 @@ from models import (
     engine, SessionDep, get_session
 )
 
+from v2_routes import v2_api
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -24,6 +26,8 @@ app = FastAPI(
     lifespan=lifespan,
     docs_url="/"
 )
+
+app.mount("/v2", v2_api)
 
 app.add_middleware(
     CORSMiddleware,

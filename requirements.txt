@@ -9,7 +9,6 @@ async-timeout==5.0.1
 asyncpg==0.30.0
 attrs==24.3.0
 babel==2.16.0
--e git+https://github.com/dotfortun/book-api@19efee29210e7478cf45a9a421ce823b8a2f9c3b#egg=book_api
 certifi==2024.8.30
 charset-normalizer==3.4.0
 click==8.1.7
