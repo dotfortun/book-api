@@ -84,6 +84,7 @@ async def create_book(
 
 
 @app.put("/library/{id}")
+@app.patch("/library/{id}")
 async def update_book(
     request: Request,
     id: Annotated[int, Path(title="id")],
