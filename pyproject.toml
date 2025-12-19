@@ -1,3 +1,7 @@
+[project]
+name = "book-api"
+version = "0.1.0"
+
 [tool.poetry]
 name = "book-api"
 version = "0.1.0"
