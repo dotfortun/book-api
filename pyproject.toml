@@ -7,6 +7,7 @@ dependencies = [
     "sqlmodel>=0.0.27",
     "psycopg2-binary>=2.9.11",
     "scalar-fastapi>=1.5.0",
+    "dotenv>=1.2.1",
 ]
 
 [tool.poetry]
