@@ -10,15 +10,20 @@ from models import (
 
 v2_api = FastAPI(
     title="Library API",
-    docs_url="/",
+    docs_url="/docs",
+    openapi_url="/v2/openapi.json",
+    swagger_ui_parameters={
+
+    }
 )
 
-@v2_api.get("/docs", include_in_schema=False)
-async def scalar_html():
-    return get_scalar_api_reference(
-        openapi_url=v2_api.openapi_url, # type: ignore
-        title=v2_api.title,
-    )
+# @v2_api.get("/docs", include_in_schema=False)
+# async def scalar_html():
+#     print(v2_api.openapi_url)
+#     return get_scalar_api_reference(
+#         openapi_url=v2_api.openapi_url, # type: ignore
+#         title=v2_api.title,
+#     )
 
 @v2_api.get("/hello")
 def hello():
